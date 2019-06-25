@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://http://www.thymeleaf.org/thymleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title sec:authentication="name"></title>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()">
+    hello:下面如果有信息就是验证通过了
+    <div sec:authentication="name"></div>
+</div>
+<hr/>
+
+<div sec:authorize="hasRole('admin')">
+    管理员可见
+
+</div>
+
+<hr/>
+<span style="color:red;">提示：</span>这是首页，是公开的
+<div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="退出">
+    </form>
+</div>
+</body>
+</html>
